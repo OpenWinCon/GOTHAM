@@ -2,7 +2,7 @@
 
 from gotham.util import deviceutil, AsyncTimer, Thread
 from gotham.util.net import L2Socket
-from gotham.net import GothamFrame, AliveFrame
+from gotham.net import PacketPreference, GothamFrame, AliveFrame
 from gotham.model.NodeInfo import *
 from gotham.Storage import Storage
 from queue import Queue
@@ -39,7 +39,7 @@ class BaseServer(Thread):
 
     def _receive_broadcast(self, src, packet):
         if not src in self._node_info:
-            self._node_info[src] = NodeInfo(packet)
+            self._node_info[src] = NodeInfo(src, packet)
         else:
             self._node_info[src].update(packet)
 
@@ -54,10 +54,15 @@ class BaseServer(Thread):
             else:
                 ip = i["ipv4"]
 
-            node_hash = b'0000000000000000'#hashutil.dict_hash(iface)
+            PacketPreference.NODE_IP = ip
+            PacketPreference.NODE_NAME = self._sock.get_hostname()
 
-            payload = AliveFrame.build(ip, self.GOTHAM_VER, self.status, node_hash)
+            node_hash = b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'#hashutil.dict_hash(iface)
+
+            payload = AliveFrame.build(self.GOTHAM_VER, self.status, node_hash)
             self._sock.broadcast(payload)
+        else:
+            print("[!] ERROR can't find nic")
 
     def onStart(self):
         self._sock.listen_start()

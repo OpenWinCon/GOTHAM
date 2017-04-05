@@ -25,6 +25,9 @@ class L2Socket:
         self.queue = queue
         self.receiver = threading.Thread(target=L2Socket.recv, args=[self])
 
+    def get_hostname(self):
+        return gethostname()
+
     def get_hw_addr(self):
         import fcntl, struct
         info = fcntl.ioctl(self.sock.fileno(), 0x8927, struct.pack('256s', self.dev[:15].encode()))

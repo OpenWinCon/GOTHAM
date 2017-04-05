@@ -5,7 +5,7 @@ __author__ = 'BetaS'
 
 
 class Storage:
-    _db = pymongo.MongoClient().gotham
+    _db = pymongo.MongoClient('/tmp/mongodb-27017.sock').gotham
 
     @classmethod
     def node(cls, src):
@@ -14,6 +14,10 @@ class Storage:
     @classmethod
     def nodes(cls):
         return cls._db.nodes
+
+    @classmethod
+    def update_neighbor_node(cls, mac, ip, hostname, ver, status, time):
+        pass
 
     @classmethod
     def node_add(cls, src, ip, hash):

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 from gotham.server import RequestAPI
+from gotham.Storage import Storage
 import enum
 import time
 
@@ -14,20 +15,27 @@ class NodeStatus(enum.Enum):
 
 
 class NodeInfo:
+    mac = None
     ip = None
+    hostname = None
     ver = 0
     status = NodeStatus.STATUS_INIT
     last_seen = time.time()
-    hash = ""
+    hash = b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
 
-    def __init__(self, packet):
+    def __init__(self, src, packet):
+        self.mac = src
         self.update(packet)
         self._request_update()
 
     def update(self, packet):
         self.ip = packet.ip
+        self.hostname = packet.hostname
         self.ver = packet.ver
+        self.status = packet.status
         self.last_seen = time.time()
+
+        Storage.update_neighbor_node(self.mac, self.ip, self.hostname, self.ver, self.status, self.last_seen)
 
         if self.status == NodeStatus.STATUS_NORMAL:
             if self.hash != packet.pkg_hash:
