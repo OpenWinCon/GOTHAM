@@ -1,8 +1,10 @@
 # encoding: utf-8
 
-from gotham.net import UDPControlFrame, NetScanRequestFrame, NetScanResultFrame
+from gotham.net.netscan import *
 from gotham.Storage import Storage
 from gotham.util.net import UDPServer, UDPClient
+
+import time
 
 __author__ = 'BetaS'
 
@@ -10,23 +12,31 @@ PORT = 15961
 
 
 class ControlServer(UDPServer):
+    NODE_TIMEOUT = 10*60
+
     def __init__(self):
         super().__init__(b"bat0", PORT)
 
     def onDataReceive(self, addr, data):
         frame = UDPControlFrame.parse(data)
 
-        if frame.command == UDPControlFrame.CommandType.CMD_NETSCAN:
-            if frame.type == UDPControlFrame.MessageType.TYPE_REQUEST:
+        if frame.command == UDPCommandType.CMD_NETSCAN:
+            if frame.type == UDPMessageType.TYPE_REQUEST:
+                request = NetScanRequestFrame.parse(frame.payload)
+
                 sender = UDPClient(addr[0], PORT)
 
-                nodes = Storage.get_neighbor_nodes()
+                timeout = time.time() - self.NODE_TIMEOUT
+                q = Storage.get_neighbor_node(timeout)
+                nodes = []
+                for data in q:
+                    if request.level == NetScanRequestLevel.NORMAL:
+                        pass
 
-                request = NetScanRequestFrame.parse(frame.payload)
                 result = request.reply(nodes)
 
                 sender.send(result)
-            elif frame.type == UDPControlFrame.MessageType.TYPE_RESULT:
+            elif frame.type == UDPMessageType.TYPE_RESULT:
                 pass
 
         print(data)

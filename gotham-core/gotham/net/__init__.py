@@ -1,1 +1,3 @@
-from .Packets import *
+from .preference import *
+
+import struct
