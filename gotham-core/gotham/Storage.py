@@ -1,5 +1,6 @@
 # encoding: utf-8
-import pymongo, time
+import pymongo
+import time
 
 __author__ = 'BetaS'
 
@@ -16,8 +17,21 @@ class Storage:
         return cls._db.nodes
 
     @classmethod
-    def update_neighbor_node(cls, mac, ip, hostname, ver, status, time):
-        pass
+    def update_neighbor_node(cls, mac, ip, hostname, ver, status, t):
+        node_info = {
+            "src": mac,
+            "ip": ip,
+            "name": hostname,
+            "ver": ver,
+            "status": status,
+            "last_seen": t
+        }
+
+        return cls._db.neighbor_nodes.update(node_info, {"src": mac}, upsert=True)
+
+    @classmethod
+    def get_neighbor_node(cls, limit_time):
+        return cls._db.neighbor_nodes.find({"last_seen": {"$gte": limit_time}})
 
     @classmethod
     def node_add(cls, src, ip, hash):

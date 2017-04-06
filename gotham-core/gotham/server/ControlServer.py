@@ -1,6 +1,7 @@
 # encoding: utf-8
 
-from gotham.net import UDPControlFrame
+from gotham.net import UDPControlFrame, NetScanRequestFrame, NetScanResultFrame
+from gotham.Storage import Storage
 from gotham.util.net import UDPServer, UDPClient
 
 __author__ = 'BetaS'
@@ -18,7 +19,13 @@ class ControlServer(UDPServer):
         if frame.command == UDPControlFrame.CommandType.CMD_NETSCAN:
             if frame.type == UDPControlFrame.MessageType.TYPE_REQUEST:
                 sender = UDPClient(addr[0], PORT)
-                sender.send("ack")
+
+                nodes = Storage.get_neighbor_nodes()
+
+                request = NetScanRequestFrame.parse(frame.payload)
+                result = request.reply(nodes)
+
+                sender.send(result)
             elif frame.type == UDPControlFrame.MessageType.TYPE_RESULT:
                 pass
 
