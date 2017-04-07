@@ -4,7 +4,7 @@ __author__ = "BetaS"
 
 
 class IPv4:
-    def __init__(self, val):
+    def __init__(self, val=0):
         if type(val) == int:
             self.__val = val
         elif type(val) == str:

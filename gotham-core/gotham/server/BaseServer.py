@@ -2,7 +2,7 @@
 
 from gotham.util import deviceutil, AsyncTimer, Thread
 from gotham.util.net import L2Socket
-from gotham.net import PacketPreference, GothamFrame, AliveFrame
+from gotham.net.l2 import *
 from gotham.model.NodeInfo import *
 from gotham.Storage import Storage
 from queue import Queue
@@ -25,7 +25,6 @@ class BaseServer(Thread):
         self._q = Queue()
         self._sock = L2Socket(dev, self._q, 0xFF01)
         self._broadcast_timer = AsyncTimer(5)
-        self._node_info = Storage.nodes()
 
         self.dev = dev
         self.status = 1
@@ -33,15 +32,14 @@ class BaseServer(Thread):
     def is_running(self):
         return self._thread.is_alive()
 
-    def _update_node(self, node, result):
-        node.update(result)
-        node.status = NodeStatus.STATUS_NORMAL
+    @staticmethod
+    def _receive_broadcast(src, packet):
+        ip = packet.ip
+        hostname = packet.name
+        core_ver = packet.core_ver
+        status = packet.status
 
-    def _receive_broadcast(self, src, packet):
-        if not src in self._node_info:
-            self._node_info[src] = NodeInfo(src, packet)
-        else:
-            self._node_info[src].update(packet)
+        Storage.update_neighbor_node(src, ip, hostname, core_ver, status, time.time())
 
     def _send_broadcast(self):
         # Send Broadcast
@@ -74,7 +72,7 @@ class BaseServer(Thread):
         if not self._q.empty():
             src, data = self._q.get_nowait()
             data = GothamFrame.parse(data)
-            if data and data.type == GothamFrame.Type.TYPE_ALIVE:
+            if data and data.type == GothamFrameType.TYPE_ALIVE:
                 self._receive_broadcast(src, AliveFrame.parse(data.payload))
 
         if self._broadcast_timer.check():
