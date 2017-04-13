@@ -38,6 +38,6 @@ class Thread:
         pass
 
 
-class ThreadOnce(Thread):
+class Coroutine(Thread):
     def start(self):
         self._thread.start()

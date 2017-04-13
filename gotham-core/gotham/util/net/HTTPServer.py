@@ -2,7 +2,7 @@
 
 import http.server
 from urllib.parse import urlparse, parse_qs
-from gotham.util.threadutil import ThreadOnce
+from gotham.util.threadutil import Coroutine
 
 __author__ = 'BetaS'
 
@@ -41,7 +41,7 @@ class HTTPHandler(http.server.BaseHTTPRequestHandler):
                 self.end_headers()
 
 
-class HTTPServer(ThreadOnce):
+class HTTPServer(Coroutine):
     def __init__(self, ip, port, base_path, static_res, dynamic_res):
         super().__init__()
 

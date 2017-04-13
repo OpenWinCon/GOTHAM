@@ -1,44 +1,14 @@
 # encoding; utf-8
 
-import time
-from .defines import *
 from .. import *
+from .defines import *
+from gotham.net import *
 
 __author__ = 'BetaS'
 
 
-class UDPControlFrame:
-    command = UDPMessageType()
-    type = UDPCommandType()
-    ver = 0
-    payload = bytes()
-
-    @classmethod
-    def build(cls, command, type, ver, payload):
-        packet = bytes()
-
-        packet += struct.pack(">H", type.value | command.value)
-        packet += struct.pack(">B", ver)
-        packet += payload
-
-        return packet
-
-    @classmethod
-    def parse(cls, p):
-        data = UDPControlFrame()
-
-        cmd = struct.unpack(">H", p[0:2])[0]
-
-        data.command = UDPCommandType(cmd & MASK_COMMAND_TYPE)
-        data.type = UDPMessageType(cmd & MASK_MESSAGE_TYPE)
-        data.ver = struct.unpack(">B", p[2:3])[0]
-        data.payload = p[3:]
-
-        return data
-
-
 class NetScanRequestFrame:
-    level = NetScanRequestLevel()
+    level = NetScanRequestLevel.NONE
     timestamp = time.time()
 
     @classmethod
@@ -46,7 +16,7 @@ class NetScanRequestFrame:
         payload = bytes()
         payload += struct.pack(">B", level.value)
         payload += struct.pack(">f", time.time())
-        return UDPControlFrame.build(UDPCommandType.CMD_NETSCAN, UDPMessageType.TYPE_REQUEST, 1, payload)
+        return ControlFrame.build(CommandType.CMD_NETSCAN, MessageType.TYPE_REQUEST, 1, payload)
 
     @classmethod
     def parse(cls, p):
@@ -70,7 +40,7 @@ class NetScanResultFrame:
     def build(cls, level, timestamp, nodes):
         payload = bytes()
 
-        payload += struct.pack(">B", level)
+        payload += struct.pack(">B", level.value)
         payload += struct.pack(">f", timestamp)
         payload += struct.pack(">f", time.time())
         payload += struct.pack(">B", len(nodes)+1)
@@ -78,11 +48,11 @@ class NetScanResultFrame:
         payload += PacketPreference.NODE_NAME.encode()
         payload += b'\x00'
         for node in nodes:
-            payload += struct.pack(">I", int(node.ip))
-            payload += node.name.encode()
+            payload += struct.pack(">I", int(node["ip"]))
+            payload += node["name"].encode()
             payload += b'\x00'
 
-        return UDPControlFrame.build(UDPCommandType.CMD_NETSCAN, UDPMessageType.TYPE_RESULT, 1, payload)
+        return ControlFrame.build(CommandType.CMD_NETSCAN, MessageType.TYPE_RESULT, 1, payload)
 
     @classmethod
     def parse(cls, p):

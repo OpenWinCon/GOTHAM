@@ -5,19 +5,15 @@ from enum import Enum
 __author__ = 'BetaS'
 
 
-class UDPMessageType(Enum):
+class MessageType(Enum):
     TYPE_NOREPLY = 0x0000
     TYPE_REQUEST = 0x8000
     TYPE_RESULT = 0xC000
 
 
-class UDPCommandType(Enum):
+class CommandType(Enum):
+    NONE        = 0x0000
     CMD_NETSCAN = 0x0001
-
-
-class NetScanRequestLevel(Enum):
-    NORMAL = 0x01
-    NONE = 0x00
 
 
 MASK_MESSAGE_TYPE = 0xC000
