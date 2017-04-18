@@ -55,7 +55,10 @@ class NetScanResultFrame:
         return ControlFrame.build(CommandType.CMD_NETSCAN, MessageType.TYPE_RESULT, 1, payload)
 
     @classmethod
-    def parse(cls, p):
+    def parse(cls, p, full=False):
+        if full:
+            p = ControlFrame.parse(p).payload
+
         data = NetScanResultFrame()
         data.nodes = list()
 

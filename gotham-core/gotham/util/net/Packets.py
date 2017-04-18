@@ -29,8 +29,8 @@ class EthernetFrame:
     def parse(cls, p):
         data = EthernetFrame()
 
-        data.dst = HMAC(struct.unpack("6p", p[0:6])[0])
-        data.src = HMAC(struct.unpack("6p", p[6:12])[0])
+        data.dst = HMAC(struct.unpack("6s", p[0:6])[0])
+        data.src = HMAC(struct.unpack("6s", p[6:12])[0])
         data.type = struct.unpack(">H", p[12:14])[0]
         data.payload = p[14:-4]
         crc = struct.unpack(">I", p[-4:])[0]

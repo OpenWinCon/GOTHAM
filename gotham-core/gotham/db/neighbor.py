@@ -7,15 +7,15 @@ __author__ = 'BetaS'
 
 def update_node(mac, ip, hostname, ver, status, t):
     node_info = {
-        "src": mac,
-        "ip": ip,
+        "src": str(mac),
+        "ip": str(ip),
         "name": hostname,
         "ver": ver,
-        "status": status,
+        "status": status.value,
         "last_seen": t
     }
-
-    return _db.neighbor_nodes.update({"src": mac}, {"$set": node_info}, upsert=True)
+    print(node_info)
+    return _db.neighbor_nodes.update({"src": str(mac)}, {"$set": node_info}, upsert=True)
 
 
 def get_node(limit_time):

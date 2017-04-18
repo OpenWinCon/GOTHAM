@@ -6,7 +6,7 @@ import time
 import logging
 
 
-LOGGER = logging.getLogger(__name__)
+LOGGER = logging.getLogger("gotham")
 
 __author__ = 'BetaS'
 

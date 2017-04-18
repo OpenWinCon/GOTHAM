@@ -5,7 +5,13 @@ __author__ = "BetaS"
 
 class HMAC(object):
     def __init__(self, val):
-        self.__val = val
+        if type(val) == bytes:
+            self.__val = 0
+            for v in val:
+                self.__val <<= 8
+                self.__val += int(v)
+        elif type(val) == int:
+            self.__val = val
 
     def __str__(self):
         a = (self.__val>>40)&0xFF

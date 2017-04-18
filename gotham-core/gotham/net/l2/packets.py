@@ -9,7 +9,7 @@ __author__ = 'BetaS'
 
 
 class GothamFrame:
-    type = GothamFrameType()
+    type = GothamFrameType.TYPE_NONE
     ver = 0
     payload = bytes()
 
@@ -23,6 +23,9 @@ class GothamFrame:
         packet += struct.pack(">H", len(payload))
         packet += payload
 
+        if len(packet) < 52:
+            packet += b'\x00' * (52-len(packet))
+
         return packet
 
     @classmethod
@@ -30,7 +33,7 @@ class GothamFrame:
         data = GothamFrame()
 
         magic = struct.unpack(">I", p[0:4])[0]
-        if magic == 0xAABCDEFF:
+        if magic == 0xF90DDA3F:
             data.type = GothamFrameType(struct.unpack(">B", p[4:5])[0])
             data.ver = struct.unpack(">B", p[5:6])[0]
             l = struct.unpack(">H", p[6:8])[0]
@@ -70,8 +73,8 @@ class AliveFrame:
 
         data.ip = IPv4(struct.unpack(">I", p[0:4])[0])
         data.core_ver = struct.unpack(">H", p[4:6])[0]
-        data.status = AliveFrame.Status(struct.unpack(">H", p[6:8])[0])
+        data.status = NodeStatus(struct.unpack(">H", p[6:8])[0])
         data.pkg_hash = struct.unpack("16p", p[8:24])[0]
-        data.hostname = p[24:-1]
+        data.hostname = p[24:-1].decode("utf-8")
 
         return data

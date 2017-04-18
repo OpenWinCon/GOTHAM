@@ -33,11 +33,17 @@ def __run(addr, data):
             nodes = []
             for data in q:
                 if request.level == NetScanRequestLevel.NORMAL:
+                    data["ip"] = IPv4(data["ip"])
+
                     nodes.append(data)
 
             result = request.reply(nodes)
 
-            sender.send(result)
+            if addr[0] == str(PacketPreference.NODE_IP):
+                result = NetScanResultFrame.parse(result, True)
+                netscan.update_data(result)
+            else:
+                sender.send(result)
         elif frame.type == MessageType.TYPE_RESULT:
             print("+ type: TYPE_RESULT")
 
