@@ -20,3 +20,4 @@ XHR_RES = {
 }
 
 server = HTTPServer("0.0.0.0", 5000, "web-res/", WEB_RES, XHR_RES)
+server.start()
