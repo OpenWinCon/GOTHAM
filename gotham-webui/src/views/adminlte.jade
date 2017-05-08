@@ -1,0 +1,33 @@
+extends base/dashboard.jade
+
+block vars
+  - var title = "Dashboard";
+
+block content-header
+  h1
+      | Blank page
+      small it all starts here
+  ol.breadcrumb
+      li: a(href="#")
+          i.fa.fa-dashboard 
+          |  Home 
+      li: a(href="#") Examples
+      li.active Blank page
+
+block content
+  +box()
+    mixin contents
+      p BOX TEST 
+      
+  +box: title a
+  +box()
+    mixin contents
+      p BOX TEST 2
+  +box()
+  +box()
+  +box()
+  +box()
+  +box()
+  +box()
+  +box()
+    

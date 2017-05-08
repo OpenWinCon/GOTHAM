@@ -1,0 +1,21 @@
+include ../components/ui.jade
+
+doctype html
+html
+  block vars
+  
+  head
+    meta(charset="UTF-8")
+    meta(content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', name='viewport')
+    
+    title 
+      block title
+        | GOTHAM | #{title}
+    
+    link(rel="stylesheet", href="css/gotham.min.css")
+    script(src="js/gotham.min.js")
+    
+    block include
+      
+  block body
+  

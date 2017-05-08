@@ -1,0 +1,34 @@
+//- WORKAROUND FOR DEFAULTS
+mixin mixin(mixin,mixinDefault)
+  - try {
+      if mixin
+        +#{mixin}
+      else
+        - throw new Error();
+  - } catch(err) {
+      if mixinDefault
+        +#{mixinDefault}
+  - }
+  
+mixin box
+  block
+  
+  mixin headerDefault
+    | HEADER
+    
+  mixin contentsDefault
+    | CONTENTS
+  
+  div.box
+      div.box-header.with-border
+          h3.box-title
+            +mixin('header','headerDefault')
+          div.box-tools.pull-right
+              button.btn.btn-box-tool(data-widget="collapse", data-toggle="tooltip", title="Collapse"): i.fa.fa-minus
+              button.btn.btn-box-tool(data-widget="remove", data-toggle="tooltip", title="Remove"): i.fa.fa-times
+      div.box-body
+        +mixin('contents','contentsDefault')
+
+mixin icon(ic)
+  i.fa(class=ic aria-hidden="true")
+  

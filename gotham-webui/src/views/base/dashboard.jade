@@ -1,0 +1,17 @@
+extends base.jade
+
+block body
+  body.skin-yellow-light.sidebar-mini
+    div.wrapper
+    block header
+      include header.jade
+
+    div.content-wrapper
+      section.content-header
+        block content-header
+      section.content
+        block content
+        
+    footer.main-footer
+      block footer
+        include footer.jade

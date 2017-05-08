@@ -1,0 +1,14 @@
+extends base/fullpage.jade
+
+block vars
+  - var title = "Main";
+
+block include
+  link(rel="stylesheet", href="css/netjsongraph.min.css")
+  link(rel="stylesheet", href="css/netjsongraph-theme.min.css")
+  script(src="js/d3.min.js")
+  script(src="js/netjsongraph.min.js")
+  script(src="js/main.min.js")
+  
+block content
+  div.wrapper-full#network-graph

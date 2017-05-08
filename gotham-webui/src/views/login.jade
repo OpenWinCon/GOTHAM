@@ -1,0 +1,31 @@
+extends base/base.jade
+
+block vars
+  - var title = "Login";
+  
+block body
+  body.hold-transition.login-page
+    div.login-box
+      div.login-logo
+        b GOTHAM 
+        | Login
+          
+      div.login-box-body
+        p.login-box-msg Sign in to start your session
+
+        form#login-form(action="./action/login" method="post")
+          div.form-group.has-feedback
+            input.form-control(type="text" name="id" placeholder="ID")
+            span.form-control-feedback
+              +icon("fa-user")
+
+          div.form-group.has-feedback
+            input.form-control(type="password" name="pw" placeholder="Password")
+            span.form-control-feedback
+              +icon("fa-lock")
+
+          div.row
+            div.col-xs-4.col-xs-offset-8
+              button.btn.btn-primary.btn-block.btn-flat(type="submit") Sign In
+    
+    script(src="js/login.min.js")

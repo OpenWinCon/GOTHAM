@@ -1,0 +1,25 @@
+{
+  "name": "gotham-webui",
+  "homepage": "https://github.com/OpenWinCon/GOTHAM",
+  "authors": [
+    "BetaS <k09089@naver.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "~3.2.0",
+    "jquery-validation": "~1.16.0",
+    "bootstrap": "~3.3.0",
+    "adminlte": "~2.3.0",
+    "font-awesome": "~4.7.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
