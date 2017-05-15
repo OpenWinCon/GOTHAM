@@ -89,6 +89,12 @@ module.exports = function (grunt) {
             'pipe/css/gotham.css'
           ],
         }, {
+            cwd: "pipe/css/",
+            src: ["*.css"],
+            dest: "public/css",
+            expand: true,
+            ext: ".min.css",
+        }, {
             cwd: "src/styles/",
             src: ["*.css", "!base.css"],
             dest: "public/css",
@@ -100,11 +106,15 @@ module.exports = function (grunt) {
 
     less: {
       dev: {
-        files: {
-          'pipe/css/main.css': [
-            'src/styles/main.less'
-          ]
-        }
+        files: [
+          {
+              cwd: "src/styles/",
+              src: ["*.less", "!base.less"],
+              dest: "pipe/css",
+              expand: true,
+              ext: ".css",
+          }
+        ]
       }
     },
 

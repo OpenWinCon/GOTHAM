@@ -1,0 +1,40 @@
+.svg-container {
+  .njg-tooltip{
+    fill: #000;
+  }
+
+  .njg-node {
+    stroke-opacity: 0.8;
+    stroke-width: 2px;
+    stroke: #000;
+
+    &:hover,
+    &.njp-open {
+        stroke: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .njg-link {
+    cursor: pointer;
+    stroke: #444;
+    stroke-width: 2;
+    stroke-opacity: 0.25;
+
+    &:hover,
+    &.njg-open {
+      stroke-width: 4 !important;
+      stroke-opacity: 0.5;
+    }
+  }
+
+  &.focusing {
+    .njg-node {
+      opacity: 0.4;
+      &.focused {
+        opacity: 1;
+        stroke-opacity: 1;
+        stroke-width: 5px;
+      }
+    }
+  }
+}

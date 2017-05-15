@@ -206,6 +206,7 @@
                     nodes[sourceIndex].linkCount++;
                     nodes[targetIndex].linkCount++;
                 }
+                console.log(nodesMap);
                 return { "nodes": nodes, "links": links };
             },
             /**
