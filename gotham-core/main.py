@@ -4,6 +4,7 @@ from gotham.server.BaseServer import BaseServer
 import gotham.server.ControlServer as control_server
 from gotham.util.net.UDPClient import UDPClient
 from gotham.net.cmd.netscan import *
+import boot
 import sys
 import logging
 
@@ -17,7 +18,6 @@ logger.addHandler(handler)
 __author__ = 'BetaS'
 
 server = None
-client = UDPClient('169.254.255.255', 15961)
 
 
 def start():
@@ -33,14 +33,18 @@ def stop():
 
 
 if __name__ == "__main__":
-    iface = "eth0"
+    path = "gotham.json"
+
     if len(sys.argv) > 1:
-        iface = sys.argv[1]
+        path = sys.argv[1]
 
-    print("STARTING : ", iface)
+    nic_list = boot.boot(path)
 
-    server = BaseServer(iface)
+    server = BaseServer(nic_list["adhoc"][0])
+    control_server.server_init()
     start()
+
+    test_client = UDPClient('169.254.255.255', 15961)
 
     while True:
         cmds = input("> ")
@@ -53,4 +57,4 @@ if __name__ == "__main__":
             break
         elif cmds == "netscan":
             payload = NetScanRequestFrame.build(NetScanRequestLevel.NORMAL)
-            client.send(payload)
+            test_client.send(payload)

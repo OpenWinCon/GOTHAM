@@ -12,6 +12,8 @@ DEV = b"bat0"
 PORT = 15961
 NODE_TIMEOUT = 10*60
 
+server = []
+
 
 def __run(addr, data):
     frame = ControlFrame.parse(data)
@@ -55,10 +57,12 @@ def __run(addr, data):
     print()
 
 
-server = [
-    UDPServer(DEV, PORT, __run),
-    TCPServer(DEV, PORT, __run)
-]
+def server_init():
+    global server
+    server = [
+        UDPServer(DEV, PORT, __run),
+        TCPServer(DEV, PORT, __run)
+    ]
 
 
 def server_start():

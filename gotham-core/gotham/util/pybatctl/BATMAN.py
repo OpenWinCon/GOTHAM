@@ -42,6 +42,11 @@ class BATMAN:
         else:
             return False
 
+    def if_clear(self):
+        ifs = self.status()
+        for name in ifs:
+            self.if_del(name)
+
     def is_up(self):
         pass
 

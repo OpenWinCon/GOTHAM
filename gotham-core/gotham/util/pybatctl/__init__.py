@@ -2,4 +2,4 @@
 
 __author__ = "BetaS"
 
-from BATMAN import *
+from .BATMAN import *

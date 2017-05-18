@@ -1,0 +1,38 @@
+{
+  "node_id": "gotham-master",
+  "node_alias": "test_ap",
+  "node_tag": "gw",
+  "nameserver": "163.180.96.54",
+  "auth": {
+    "id": "root",
+    "pw": "1234"
+  },
+  "nic": {
+    "wlan0": {
+      "type": "adhoc",
+      "data": {
+        "ssid": "gotham",
+        "channel": 11
+      }
+    },
+    "eth0": {
+      "type": "gw",
+      "data": {
+        "ip": "163.180.118.69",
+        "subnet": "255.255.255.0",
+        "gateway": "163.180.118.1"
+      }
+    },
+    "wlan1": {
+      "type": "ap",
+      "data": {
+        "ssid": "gotham-ap",
+        "channel": 3,
+        "dhcp": "172.31.1.1",
+        "target": "eth0"
+      }
+    }
+  },
+  "install_package": [
+  ]
+}

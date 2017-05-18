@@ -21,7 +21,7 @@ def run_command(cmd=[]):
     if len(err) > 0:
         raise RunCommandError(cmd, err)
 
-    return proc.stdout.readlines()
+    return list(map(lambda x: x.decode('utf-8'), proc.stdout.readlines()))
 
 def mtu_get(dev="wlan0"):
     result = run_command(["ip", "link", "show", dev])
