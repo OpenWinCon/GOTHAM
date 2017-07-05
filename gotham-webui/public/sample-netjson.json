@@ -1,0 +1,132 @@
+{
+    "type": "NetworkGraph",
+    "label": "gotham testbed",
+    "protocol": "batman-adv",
+    "version": "0.6.6.2",
+    "metric": "ETX",
+    "nodes": [
+        {
+            "id": "gotham1",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:1d:dc:12",
+            "type": "gw"
+        },
+        {
+            "id": "gotham2",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:1d:e8:d4",
+            "type": "ap"
+        },
+        {
+            "id": "gotham3",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:1b:d6:a2",
+            "type": "ap"
+        },
+        {
+            "id": "gotham4",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:1c:74:b8",
+            "type": "ap"
+        },
+        {
+            "id": "gotham5",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:1d:e8:d8",
+            "type": "bridge"
+        },
+        {
+            "id": "gotham6",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:0e:3e:dd",
+            "type": "ap"
+        },
+        {
+            "id": "gotham13",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:0d:e6:64",
+            "type": "ap"
+        },
+        {
+            "id": "gotham14",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:1b:43:a8",
+            "type": "ap"
+        },
+        {
+            "id": "gotham15",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:1d:e3:a3",
+            "type": "bridge"
+        },
+        {
+            "id": "gotham16",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:1d:ec:b6",
+            "type": "ap"
+        },
+        {
+            "id": "gotham17",
+            "ip": "169.254.0.0",
+            "mac": "98:de:d0:1c:69:cf",
+            "type": "ap"
+        }
+    ],
+    "links": [
+        {
+            "source": "gotham1",
+            "target": "gotham2",
+            "cost": 1.0
+        },
+        {
+            "source": "gotham2",
+            "target": "gotham3",
+            "cost": 1.0
+        },
+        {
+            "source": "gotham2",
+            "target": "gotham17",
+            "cost": 0.86
+        },
+        {
+            "source": "gotham3",
+            "target": "gotham4",
+            "cost": 1.0
+        },
+        {
+            "source": "gotham4",
+            "target": "gotham5",
+            "cost": 1.0
+        },
+        {
+            "source": "gotham5",
+            "target": "gotham6",
+            "cost": 1.0
+        },
+        {
+            "source": "gotham2",
+            "target": "gotham17",
+            "cost": 1.0
+        },
+        {
+            "source": "gotham17",
+            "target": "gotham16",
+            "cost": 1.0
+        },
+        {
+            "source": "gotham16",
+            "target": "gotham15",
+            "cost": 1.0
+        },
+        {
+            "source": "gotham15",
+            "target": "gotham14",
+            "cost": 1.0
+        },
+        {
+            "source": "gotham14",
+            "target": "gotham13",
+            "cost": 1.0
+        }
+    ]
+}

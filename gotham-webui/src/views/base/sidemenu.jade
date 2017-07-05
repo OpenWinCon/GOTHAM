@@ -1,180 +1,23 @@
+mixin list_header(target)
+  if sidemenu == target
+    li.active
+      block
+  else
+    li
+      block
+
 li.header 
-  | GOTHAM DASHBOARD
-li.treeview
-    a(href="#")
-        i.fa.fa-dashboard
-        span Dashboard
-        i.fa.fa-angle-left.pull-right
-    ul.treeview-menu
-        li: a(href="index.html")
-            i.fa.fa-circle-o
-            |  Dashboard v1
-        li: a(href="index2.html")
-            i.fa.fa-circle-o
-            |  Dashboard v2
-li.treeview
-    a(href="#")
-        i.fa.fa-files-o
-        span Layout Options
-        span.label.label-primary.pull-right 4
-    ul.treeview-menu
-        li: a(href="../layout/top-nav.html")
-            i.fa.fa-circle-o
-            |  Top Navigation
-        li: a(href="../layout/boxed.html")
-            i.fa.fa-circle-o
-            |  Boxed
-        li: a(href="../layout/fixed.html")
-            i.fa.fa-circle-o
-            |  Fixed
-        li: a(href="../layout/collapsed-sidebar.html")
-            i.fa.fa-circle-o
-            |  Collapsed Sidebar
-li
-    a(href="../widgets.html")
-        i.fa.fa-th
-        span Widgets
-        small.label.pull-right.bg-green Hot
-li.treeview
-    a(href="#")
-        i.fa.fa-pie-chart
-        span Charts
-        i.fa.fa-angle-left.pull-right
-    ul.treeview-menu
-        li: a(href="../charts/morris.html")
-            i.fa.fa-circle-o
-            |  Morris
-        li: a(href="../charts/flot.html")
-            i.fa.fa-circle-o
-            |  Flot
-        li: a(href="../charts/inline.html")
-            i.fa.fa-circle-o
-            |  Inline charts
-li.treeview: a(href="#")
-    i.fa.fa-laptop
-    span UI Elements
-    i.fa.fa-angle-left.pull-right
-    ul.treeview-menu
-        li: a(href="../UI/general.html")
-            i.fa.fa-circle-o
-            |  General
-        li: a(href="../UI/icons.html")
-            i.fa.fa-circle-o
-            |  Icons
-        li: a(href="../UI/buttons.html")
-            i.fa.fa-circle-o
-            |  Buttons
-        li: a(href="../UI/sliders.html")
-            i.fa.fa-circle-o
-            |  Sliders
-        li: a(href="../UI/timeline.html")
-            i.fa.fa-circle-o
-            |  Timeline
-        li: a(href="../UI/modals.html")
-            i.fa.fa-circle-o
-            |  Modals
-li.treeview
-    a(href="#")
-        i.fa.fa-edit
-        span Forms
-        i.fa.fa-angle-left.pull-right
-    ul.treeview-menu
-        li: a(href="../forms/general.html")
-            i.fa.fa-circle-o
-            |  General Elements
-        li: a(href="../forms/advanced.html")
-            i.fa.fa-circle-o
-            |  Advanced Elements
-        li: a(href="../forms/editors.html")
-            i.fa.fa-circle-o
-            |  Editors
-li.treeview
-    a(href="#")
-        i.fa.fa-table
-        span Tables
-        i.fa.fa-angle-left.pull-right
-    ul.treeview-menu
-        li: a(href="../tables/simple.html")
-            i.fa.fa-circle-o
-            |  Simple Tables
-        li: a(href="../tables/data.html")
-            i.fa.fa-circle-o
-            |  Data Tables
-li
-    a(href="../calendar.html")
-        i.fa.fa-calendar
-        span Calendar
-        small.label.pull-right.bg-red 3
-li
-    a(href="../mailbox/mailbox.html")
-        i.fa.fa-envelope
-        span Mailbox
-        small.label.pull-right.bg-yellow 12
-li.treeview.active
-    a(href="#")
-        i.fa.fa-folder
-        span Examples
-        i.fa.fa-angle-left.pull-right
-    ul.treeview-menu
-        li: a(href="invoice.html")
-            i.fa.fa-circle-o
-            |  Invoice
-        li: a(href="login.html")
-            i.fa.fa-circle-o
-            |  Login
-        li: a(href="register.html")
-            i.fa.fa-circle-o
-            |  Register
-        li: a(href="lockscreen.html")
-            i.fa.fa-circle-o
-            span Lockscreen
-        li: a(href="404.html")
-            i.fa.fa-circle-o
-            |  404 Error
-        li: a(href="500.html")
-            i.fa.fa-circle-o
-            |  500 Error
-        li.active: a(href="blank.html")
-            i.fa.fa-circle-o
-            |  Blank Page
-li.treeview
-    a(href="#")
-        i.fa.fa-share
-        span Multilevel
-        i.fa.fa-angle-left.pull-right
-    ul.treeview-menu
-        li: a(href="#")
-            i.fa.fa-circle-o
-            span Level One
-        li
-            a(href="#")
-                i.fa.fa-circle-o
-                span Level One
-                li
-                    a(href="#")
-                        i.fa.fa-circle-o
-                        span Level Two
-                        i.fa.fa-angle-left.pull-right
-                    ul.treeview-menu
-                        li: a(href="#")
-                            i.fa.fa-circle-o
-                            span Level Three
-                        li: a(href="#")
-                            i.fa.fa-circle-o
-                            span Level Three
-        li: a(href="#")
-            i.fa.fa-circle-o
-            span Level One
-li: a(href="documentation/index.html")
-    i.fa.fa-book
-    span Documentation
-li.header LABELS
-li: a(href="#")
-    i.fa.fa-circle-o.text-danger
-    span Important
-li: a(href="#")
-    i.fa.fa-circle-o.text-warning
-    span Warning
-li: a(href="#")
-    i.fa.fa-circle-o.text-info
-    span Information
+  | GOTHAM1.local
++list_header(1)
+  a(href="/main.html")
+    i.fa.fa-dashboard
+    span Dashboard
++list_header(2)
+  a(href="/netconf.html")
+    i.fa.fa-files-o
+    span Network
++list_header(3)
+  a(href="#")
+    i.fa.fa-th
+    span Extensions
+        

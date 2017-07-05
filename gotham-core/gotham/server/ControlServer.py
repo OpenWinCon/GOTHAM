@@ -8,8 +8,6 @@ from gotham.util.net import UDPServer, TCPServer, TCPClient
 
 __author__ = 'BetaS'
 
-DEV = b"bat0"
-PORT = 15961
 NODE_TIMEOUT = 10*60
 
 server = []
@@ -57,11 +55,11 @@ def __run(addr, data):
     print()
 
 
-def server_init():
+def server_init(dev, port):
     global server
     server = [
-        UDPServer(DEV, PORT, __run),
-        TCPServer(DEV, PORT, __run)
+        UDPServer(dev, port, __run),
+        TCPServer(dev, port, __run)
     ]
 
 

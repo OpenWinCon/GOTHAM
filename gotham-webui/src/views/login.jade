@@ -3,6 +3,9 @@ extends base/base.jade
 block vars
   - var title = "Login";
   
+block include
+  script(src="js/login.min.js")
+  
 block body
   body.hold-transition.login-page
     div.login-box
@@ -28,4 +31,3 @@ block body
             div.col-xs-4.col-xs-offset-8
               button.btn.btn-primary.btn-block.btn-flat(type="submit") Sign In
     
-    script(src="js/login.min.js")

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title> GOTHAM | Main
+    </title>
+    <link rel="stylesheet" href="css/gotham.min.css">
+    <script src="js/gotham.min.js"></script>
+    <link rel="stylesheet" href="css/netjsongraph.min.css">
+    <link rel="stylesheet" href="css/netjsongraph-theme.min.css">
+    <link rel="stylesheet" href="css/netmap.min.css">
+    <script src="js/d3.min.js"></script>
+    <script src="js/netjsongraph.min.js"></script>
+    <script src="js/netmap.min.js"></script>
+  </head>
+  <body class="skin-yellow-light fullpage">
+    <div class="wrapper">
+      <header class="main-header"><a class="logo" href="/main.html"> <span class="logo-lg"> <b>GOTHAM </b>ADMIN</span></a>
+        <nav class="navbar navbar-static-top" role="navigation"></nav>
+      </header>
+    </div>
+    <div class="wrapper-full" id="network-graph">
+      <div class="search-bar">
+        <input id="search" placeholder="enter a node name" onkeydown="if(event.keyCode==13) search_node();"><span onclick="search_node()"><i class="fa fa-search" aria-hidden="true"></i></span>
+      </div>
+      <div class="modal" id="nodeInfo">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              <h4 class="modal-title">
+                 {NODE NAME}'s Information</h4>
+            </div>
+            <div class="modal-body">
+              <p>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-default pull-left" type="button" data-dismiss="modal">Close</button>
+              <button class="btn btn-success" type="button">
+                 Show detail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

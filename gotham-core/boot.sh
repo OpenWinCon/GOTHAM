@@ -10,4 +10,4 @@ service isc-dhcp-server stop
 sleep 5
 
 echo "starting..."
-python3 main.py "gotham.json"
+python3 main.py "gotham_iperf_test.json"

@@ -1,0 +1,94 @@
+extends base/fullpage.jade
+
+block vars
+  - var title = "Main";
+
+block include
+  link(rel="stylesheet", href="css/setup.min.css")
+  script(src="js/setup.min.js")
+      
+block content
+  div.welcome-title
+    h1 Welcome to 
+      b GOTHAM
+    p build your wireless testbed nice and easy
+    hr
+      
+      
+  div.col-xs-6.col-xs-offset-3#step1
+    form#form-step1(method="POST")
+      div.box.box-warning
+        div.box-header.with-border
+          h3.box-title
+            | Account Setup (1/3)
+            
+        div.box-body
+          div.row
+            div.col-xs-12
+              div.form-group.has-feedback
+                label ID
+                input.form-control(name="id", placeholder="4-16 letters")
+                span.form-control-feedback
+                  +icon("fa-user")
+                  
+              div.form-group.has-feedback
+                label PW
+                input.form-control(name="pw",type="password",placeholder="6-32 letters")
+                span.form-control-feedback
+                  +icon("fa-lock")
+                  
+              div.form-group.has-feedback
+                label Re-type PW
+                input.form-control(name="pw_re",type="password",placeholder="Re-type the above password")
+                span.form-control-feedback
+                  +icon("fa-lock")
+                  
+        div.box-footer  
+          button.btn.btn-warning.btn-flat.pull-right Next
+  
+  div.col-xs-6.col-xs-offset-3.hide#step2
+    form#form-step2(method="POST")
+      div.box.box-warning
+        div.box-header.with-border
+          h3.box-title
+            | Basic Info (2/3)
+            
+        div.box-body
+          div.row
+            div.col-xs-12
+              div.form-group
+                label Node ID
+                input.form-control(name="hostname")
+                  
+              div.form-group
+                label Description
+                textarea.form-control(name="desc",rows="8")
+                  
+        div.box-footer  
+          button.btn.btn-warning.btn-flat.pull-right Next
+    
+  div.col-xs-6.col-xs-offset-3.hide#step3
+    form#form-step3(method="POST")
+      div.box.box-warning
+        div.box-header.with-border
+          h3.box-title
+            | Additional Info (3/3)
+            
+        div.box-body
+          div.row
+            div.col-xs-12
+              div.form-group
+                label Administrator Name
+                input.form-control(name="username")
+                  
+              div.form-group
+                label Contact Tel
+                input.form-control(name="ownertel")
+                  
+              div.form-group
+                label Contact Email
+                input.form-control(name="owneremail")
+                  
+        div.box-footer  
+          button.btn.btn-success.btn-flat.pull-right(type="submit") Submit   
+          

@@ -1,21 +1,18 @@
 {
   "node_id": "gotham-master",
-  "node_alias": "test_ap",
-  "node_tag": "gw",
-  "nameserver": "163.180.96.54",
-  "auth": {
-    "id": "root",
-    "pw": "1234"
-  },
+  "nameserver": "163.180.96.54 8.8.8.8 8.8.4.4",
   "nic": {
     "wlan0": {
-      "type": "adhoc",
+      "type": "mesh",
       "data": {
         "ssid": "gotham",
         "channel": 11
       }
     },
     "eth0": {
+      "type": "mesh"
+    },
+    "eth1": {
       "type": "gw",
       "data": {
         "ip": "163.180.118.69",
@@ -28,8 +25,13 @@
       "data": {
         "ssid": "gotham-ap",
         "channel": 3,
-        "dhcp": "172.31.1.1",
-        "target": "eth0"
+        "htmode": "HT40+",
+        "wmm_enable": true,
+        "country": "kr",
+        "dhcp": {
+          "network": "172.31.1.0",
+          "subnet": "255.255.255.0"
+        },
       }
     }
   },

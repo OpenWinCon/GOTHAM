@@ -1,0 +1,39 @@
+extends base/fullpage.jade
+
+block vars
+  - var title = "Main";
+
+block include
+  link(rel="stylesheet", href="css/netjsongraph.min.css")
+  link(rel="stylesheet", href="css/netjsongraph-theme.min.css")
+  link(rel="stylesheet", href="css/netmap.min.css")
+  script(src="js/d3.min.js")
+  script(src="js/netjsongraph.min.js")
+  script(src="js/netmap.min.js")
+  
+block content
+  div.wrapper-full#network-graph
+    div.search-bar
+      input#search(placeholder="enter a node name",onkeydown="if(event.keyCode==13) search_node();")
+      span(onclick="search_node()")
+        +icon('fa-search')
+    
+    div.modal#nodeInfo
+      div.modal-dialog
+        div.modal-content
+          div.modal-header
+            button.close(type="button", data-dismiss="modal", aria-label="Close")
+              span(aria-hidden="true") ×
+            h4.modal-title 
+              | {NODE NAME}'s Information
+          
+          div.modal-body
+            p
+              | One fine body…
+          
+          div.modal-footer
+            button.btn.btn-default.pull-left(type="button", data-dismiss="modal")
+              | Close
+            button.btn.btn-success(type="button") 
+              | Show detail
+          

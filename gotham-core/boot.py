@@ -101,8 +101,8 @@ def boot(path):
             nic = nic_list["adhoc"][0]
             print("    [+] configure", nic)
             data = json["nic"][nic]["data"]
-            Interface(nic).set_mtu(1527).down()
-            Interface(nic).set_adhoc(data["ssid"], data["channel"]).up()
+            Interface(nic).set_mtu(1527).up()
+            Interface(nic).set_adhoc(data["ssid"], data["channel"])
 
             bat0.if_add(nic)
 

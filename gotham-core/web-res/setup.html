@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title> GOTHAM | Main
+    </title>
+    <link rel="stylesheet" href="css/gotham.min.css">
+    <script src="js/gotham.min.js"></script>
+    <link rel="stylesheet" href="css/setup.min.css">
+    <script src="js/setup.min.js"></script>
+  </head>
+  <body class="skin-yellow-light fullpage">
+    <div class="wrapper">
+      <header class="main-header"><a class="logo" href="/main.html"> <span class="logo-lg"> <b>GOTHAM </b>ADMIN</span></a>
+        <nav class="navbar navbar-static-top" role="navigation"></nav>
+      </header>
+    </div>
+    <div class="welcome-title">
+      <h1>Welcome to <b>GOTHAM</b></h1>
+      <p>build your wireless testbed nice and easy</p>
+      <hr>
+    </div>
+    <div class="col-xs-6 col-xs-offset-3" id="step1">
+      <form id="form-step1" method="POST">
+        <div class="box box-warning">
+          <div class="box-header with-border">
+            <h3 class="box-title">Account Setup (1/3)</h3>
+          </div>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group has-feedback">
+                  <label>ID</label>
+                  <input class="form-control" name="id" placeholder="4-16 letters"><span class="form-control-feedback"><i class="fa fa-user" aria-hidden="true"></i></span>
+                </div>
+                <div class="form-group has-feedback">
+                  <label>PW</label>
+                  <input class="form-control" name="pw" type="password" placeholder="6-32 letters"><span class="form-control-feedback"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                </div>
+                <div class="form-group has-feedback">
+                  <label>Re-type PW</label>
+                  <input class="form-control" name="pw_re" type="password" placeholder="Re-type the above password"><span class="form-control-feedback"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-footer"> 
+            <button class="btn btn-warning btn-flat pull-right">Next</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-6 col-xs-offset-3 hide" id="step2">
+      <form id="form-step2" method="POST">
+        <div class="box box-warning">
+          <div class="box-header with-border">
+            <h3 class="box-title">Basic Info (2/3)</h3>
+          </div>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <label>Node ID</label>
+                  <input class="form-control" name="hostname">
+                </div>
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea class="form-control" name="desc" rows="8"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-footer"> 
+            <button class="btn btn-warning btn-flat pull-right">Next</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-6 col-xs-offset-3 hide" id="step3">
+      <form id="form-step3" method="POST">
+        <div class="box box-warning">
+          <div class="box-header with-border">
+            <h3 class="box-title">Additional Info (3/3)</h3>
+          </div>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <label>Administrator Name</label>
+                  <input class="form-control" name="username">
+                </div>
+                <div class="form-group">
+                  <label>Contact Tel</label>
+                  <input class="form-control" name="ownertel">
+                </div>
+                <div class="form-group">
+                  <label>Contact Email</label>
+                  <input class="form-control" name="owneremail">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-footer"> 
+            <button class="btn btn-success btn-flat pull-right" type="submit">Submit   </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

@@ -2,8 +2,7 @@
 
 from gotham.server.BaseServer import BaseServer
 import gotham.server.ControlServer as control_server
-from gotham.util.net.UDPClient import UDPClient
-from gotham.net.cmd.netscan import *
+import gotham.server.HttpServer as http_server
 import boot
 import sys
 import logging
@@ -17,19 +16,23 @@ logger.addHandler(handler)
 
 __author__ = 'BetaS'
 
-server = None
+base_server = None
 
+DEV = b"bat0"
+PORT = 15961
 
 def start():
     print("[!] START")
-    server.start()
+    base_server.start()
     control_server.server_start()
+    http_server.start()
 
 
 def stop():
     print("[!] STOPPED")
-    server.stop()
+    base_server.stop()
     control_server.server_stop()
+    http_server.stop()
 
 
 if __name__ == "__main__":
@@ -40,11 +43,11 @@ if __name__ == "__main__":
 
     nic_list = boot.boot(path)
 
-    server = BaseServer(nic_list["adhoc"][0])
-    control_server.server_init()
-    start()
+    base_server = BaseServer(nic_list["adhoc"][0])
+    control_server.server_init(DEV, PORT)
+    http_server.server_init(5000, PORT)
 
-    test_client = UDPClient('169.254.255.255', 15961)
+    start()
 
     while True:
         cmds = input("> ")
@@ -55,6 +58,3 @@ if __name__ == "__main__":
         elif cmds == "quit":
             stop()
             break
-        elif cmds == "netscan":
-            payload = NetScanRequestFrame.build(NetScanRequestLevel.NORMAL)
-            test_client.send(payload)

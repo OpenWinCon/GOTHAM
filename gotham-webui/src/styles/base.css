@@ -8,3 +8,6 @@ body.fullpage {
 div.wrapper-full {
   height: calc(100vh - 50px);
 }
+.skin-yellow-light .sidebar-menu>li.active>a, .skin-yellow-light .sidebar-menu>li:hover>a {
+  background: #f0efef;
+}

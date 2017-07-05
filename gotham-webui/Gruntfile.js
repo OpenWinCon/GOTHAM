@@ -17,12 +17,12 @@ module.exports = function (grunt) {
       css: {
         files: {
           'pipe/css/gotham.css': [
-            'src/styles/base.css',
-            'pipe/css/main.css',
             'bower_components/bootstrap/dist/css/bootstrap.css',
             'bower_components/font-awesome/css/font-awesome.css',
             'bower_components/adminlte/dist/css/AdminLTE.css',
             'bower_components/adminlte/dist/css/skins/skin-yellow-light.css',
+            'src/styles/base.css',
+            'pipe/css/main.css',
           ],
         },
         options: {
@@ -138,6 +138,19 @@ module.exports = function (grunt) {
       }
     },
 
+    copy: {
+    	publish: {
+    		files: [
+    			{
+    				cwd: "public/",
+    				expand: true,
+    				src: ["**"],
+    				dest: "../gotham-core/web-res"
+    			}
+    		]
+    	}
+    },
+
     watch: {
       html: {
         files: ['src/views/**/*.jade'],
@@ -151,6 +164,10 @@ module.exports = function (grunt) {
         files: ['src/styles/*.less', 'src/styles/*.css'],
         tasks: ['less:dev', 'concat:css', 'cssmin:build']
       },
+      publish: {
+      	files: ['public/**/*'],
+      	tasks: ['copy:publish']
+      },
       options: {
         livereload: false
       }
@@ -163,9 +180,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-pug');
 
-  grunt.registerTask('dev', ['concat:dev', 'concat:dev-lib', 'uglify:build', 'less:dev', 'concat:css', 'cssmin:build', 'pug:compile', 'watch']);
-  grunt.registerTask('build', ['jshint', 'concat:dev', 'concat:dev-lib','uglify:build', 'less:dev', 'concat:css', 'cssmin:build', 'pug:compile']);
+  grunt.registerTask('dev', ['concat:dev', 'concat:dev-lib', 'uglify:build', 'less:dev', 'concat:css', 'cssmin:build', 'pug:compile', 'copy:publish', 'watch']);
+  grunt.registerTask('build', ['jshint', 'concat:dev', 'concat:dev-lib','uglify:build', 'less:dev', 'concat:css', 'cssmin:build', 'pug:compile', 'copy:publish']);
   grunt.registerTask('lint', ['concat:dev', 'concat:dev-lib', 'uglify:build', 'jshint']);
 };

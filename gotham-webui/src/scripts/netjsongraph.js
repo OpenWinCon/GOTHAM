@@ -423,7 +423,7 @@
                                      return baseClass;
                                  })
                                  .attr("r", opts.circleRadius)
-                                 .on("click", opts.onClickNode)
+                                 .on("click", function () {  if (d3.event.defaultPrevented) return; opts.onClickNode(); })
                                  .call(drag);
 
                     var labels = groups.append('text')

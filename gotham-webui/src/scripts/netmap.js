@@ -1,6 +1,6 @@
 $(function () {
   d3.netJsonGraph(
-    "https://raw.githubusercontent.com/netjson/netjsongraph.js/master/examples/data/netjson.json", {
+    "./sample-netjson.json", {
       el: "#network-graph",
       metadata: false,
       charge: -250,
@@ -8,7 +8,7 @@ $(function () {
       labelDy: '-1.8em',
       onClickNode: function (node) {
           console.log("click node!!");
-          console.log(node);
+          click_node(node);
       },
       onClickLink: function () {
         console.log("click link!!");
@@ -16,6 +16,10 @@ $(function () {
     }
   );
 });
+
+var click_node = function (node) {
+  $('#nodeInfo').modal('toggle')
+}
 
 var search_node = function () {
   var name = $("#search").val();

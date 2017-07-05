@@ -1,0 +1,30 @@
+{
+  "node_id": "gotham1",
+  "node_alias": "test_ap",
+  "node_tag": "gw",
+  "nameserver": "8.8.8.8",
+  "auth": {
+    "id": "root",
+    "pw": "1234"
+  },
+  "nic": {
+    "wlan0": {
+      "type": "adhoc",
+      "data": {
+        "ssid": "gotham",
+        "channel": 1
+      }
+    }
+    "wlan1": {
+      "type": "ap",
+      "data": {
+        "ssid": "gotham-ap",
+        "channel": 11,
+        "dhcp": "192.168.0.1",
+        "target": "bat0"
+      }
+    }
+  },
+  "install_package": [
+  ]
+}

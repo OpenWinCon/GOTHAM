@@ -1,11 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <title>GOTHAM LOGIN</title>
-</head>
-<body>
-    <div>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title> GOTHAM | Login
+    </title>
+    <link rel="stylesheet" href="css/gotham.min.css">
+    <script src="js/gotham.min.js"></script>
+    <script src="js/login.min.js"></script>
+  </head>
+  <body class="hold-transition login-page">
+    <div class="login-box">
+      <div class="login-logo"><b>GOTHAM </b>Login</div>
+      <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+        <form id="login-form" action="./action/login" method="post">
+          <div class="form-group has-feedback">
+            <input class="form-control" type="text" name="id" placeholder="ID"><span class="form-control-feedback"><i class="fa fa-user" aria-hidden="true"></i></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input class="form-control" type="password" name="pw" placeholder="Password"><span class="form-control-feedback"><i class="fa fa-lock" aria-hidden="true"></i></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-4 col-xs-offset-8">
+              <button class="btn btn-primary btn-block btn-flat" type="submit">Sign In</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-</body>
+  </body>
 </html>

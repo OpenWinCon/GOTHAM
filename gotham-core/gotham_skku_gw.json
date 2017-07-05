@@ -1,0 +1,29 @@
+{
+  "node_id": "gotham-skku",
+  "node_alias": "test_ap",
+  "node_tag": "gw",
+  "nameserver": "8.8.8.8",
+  "auth": {
+    "id": "root",
+    "pw": "1234"
+  },
+  "nic": {
+    "wlan0": {
+      "type": "adhoc",
+      "data": {
+        "ssid": "gotham-skku-mesh",
+        "channel": 38
+      }
+    },
+    "eth1": {
+      "type": "gw",
+      "data": {
+        "ip": "10.0.0.2",
+        "subnet": "255.0.0.0",
+        "gateway": "10.0.0.1"
+      }
+    }
+  },
+  "install_package": [
+  ]
+}

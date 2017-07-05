@@ -1,19 +1,34 @@
-extends base/fullpage.jade
+extends base/dashboard.jade
 
 block vars
-  - var title = "Main";
+  - var title = "Dashboard";
+  - var sidemenu = 1;
 
-block include
-  link(rel="stylesheet", href="css/netjsongraph.min.css")
-  link(rel="stylesheet", href="css/netjsongraph-theme.min.css")
-  link(rel="stylesheet", href="css/main.min.css")
-  script(src="js/d3.min.js")
-  script(src="js/netjsongraph.min.js")
-  script(src="js/main.min.js")
-  
+block content-header
+  h1
+      | Blank page
+      small it all starts here
+  ol.breadcrumb
+      li: a(href="#")
+          i.fa.fa-dashboard 
+          |  Home 
+      li: a(href="#") Examples
+      li.active Blank page
+
 block content
-  div.wrapper-full#network-graph
-    div.search-bar
-      input#search(placeholder="enter a node name",onkeydown="if(event.keyCode==13) search_node();")
-      span(onclick="search_node()")
-        +icon('fa-search')
+  +box()
+    mixin contents
+      p BOX TEST 
+      
+  +box: title a
+  +box()
+    mixin contents
+      p BOX TEST 2
+  +box()
+  +box()
+  +box()
+  +box()
+  +box()
+  +box()
+  +box()
+    

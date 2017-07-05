@@ -10,7 +10,7 @@ mixin mixin(mixin,mixinDefault)
         +#{mixinDefault}
   - }
   
-mixin box
+mixin box(style)
   block
   
   mixin headerDefault
@@ -18,16 +18,18 @@ mixin box
     
   mixin contentsDefault
     | CONTENTS
+    
+  mixin footerDefault
+    | FOOTER
   
-  div.box
+  div.box(class=style)
       div.box-header.with-border
           h3.box-title
             +mixin('header','headerDefault')
-          div.box-tools.pull-right
-              button.btn.btn-box-tool(data-widget="collapse", data-toggle="tooltip", title="Collapse"): i.fa.fa-minus
-              button.btn.btn-box-tool(data-widget="remove", data-toggle="tooltip", title="Remove"): i.fa.fa-times
       div.box-body
         +mixin('contents','contentsDefault')
+      div.box-footer
+        +mixin('footer', 'footerDefault')
 
 mixin icon(ic)
   i.fa(class=ic aria-hidden="true")
